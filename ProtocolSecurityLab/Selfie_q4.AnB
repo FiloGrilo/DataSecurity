@@ -1,0 +1,20 @@
+Protocol: Selfie
+
+Types: Agent A,B;
+       Number N1,N2;
+       Function secretk,mac,kdf
+
+Knowledge: A: A,B,exp(exp(g,secretk(A)),secretk(B)),mac,kdf;
+           B: A,B,exp(exp(g,secretk(A)),secretk(B)),mac,kdf;
+
+Actions:
+
+A->B: {| A,exp(g,N1) |}exp(exp(g,secretk(A)),secretk(B))
+B->A: {| B,exp(g,N2) |}exp(exp(g,secretk(A)),secretk(B)),mac(kdf(exp(exp(g,secretk(A)),secretk(B)),exp(exp(g,N1),N2),exp(g,N1),exp(g,N2))
+A->B: mac(kdf(exp(exp(g,secretk(A)),secretk(B)),exp(exp(g,N2),N1)),exp(g,N1),exp(g,N2),mac(kdf(exp(exp(g,secretk(A)),secretk(B)),exp(exp(g,N1),N2))),exp(g,N1),exp(g,N2)))
+
+Goals:
+
+B authenticates A on N1
+A authenticates B on N2
+kdf(exp(exp(g,secretk(A)),secretk(B)), exp(exp(g, N1), N2))) secret between A,B

@@ -1,0 +1,34 @@
+Open-Source Fixedpoint Model-Checker version 2022
+INPUT:
+   ../../Selfie.AnB
+SUMMARY:
+  ATTACK_FOUND
+GOAL:
+  weak_auth
+BACKEND:
+  Open-Source Fixedpoint Model-Checker version 2022
+STATISTICS:
+  TIME 173 ms
+  parseTime 0 ms
+  visitedNodes: 6 nodes
+  depth: 3 plies
+
+ATTACK TRACE:
+(x501,1) -> i: N1(1)
+i -> (x501,1): N1(1)
+(x501,1) -> i: N2(2),mac(kdf(exp(exp(g,secretk(x502)),secretk(x501)),N1(1),N2(2)),N1(1),N2(2))
+i -> (x501,1): N2(2),mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),N1(1),N2(2))
+(x501,1) -> i: x501,x502,mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),wa,N1(1),N2(2),mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),N1(1),N2(2)))
+
+
+% Reached State:
+% 
+% request(x501,x502,pABN2,N2(2),1)
+% state_rA(x501,2,wa,kdf,mac,exp(exp(g,secretk(x501)),secretk(x502)),x502,N1(1),mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),N1(1),N2(2)),N2(2),N2(2),mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),N1(1),N2(2)),x501,x502,mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),wa,N1(1),N2(2),mac(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),N1(1),N2(2))),1)
+% secrets(kdf(exp(exp(g,secretk(x501)),secretk(x502)),N1(1),N2(2)),secrecyset(x501,1,pkdfExpExpgsecretkAsecretkBN1N2),i)
+% contains(secrecyset(x501,1,pkdfExpExpgsecretkAsecretkBN1N2),x501)
+% contains(secrecyset(x501,1,pkdfExpExpgsecretkAsecretkBN1N2),x502)
+% state_rB(x501,1,wa,kdf,mac,exp(exp(g,secretk(x502)),secretk(x501)),x502,N1(1),N2(2),N2(2),mac(kdf(exp(exp(g,secretk(x502)),secretk(x501)),N1(1),N2(2)),N1(1),N2(2)),1)
+% witness(x501,x502,pBAN1,N1(1))
+% witness(x501,x502,pABN2,N2(2))
+
